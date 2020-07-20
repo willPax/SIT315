@@ -1,0 +1,17 @@
+void setup()
+{
+  pinMode(2, INPUT);
+  pinMode(8, OUTPUT);
+}
+
+void loop()
+{
+  if (digitalRead(2)== HIGH) //Checks the sensor for motion
+  {digitalWrite(8, HIGH);    //LED on if motion is detected
+   Serial.print("Motion Detected");
+  } 
+  else 
+  {   digitalWrite(8, LOW);   //No motion, no light
+      Serial.print("No Motion");
+  }
+}
