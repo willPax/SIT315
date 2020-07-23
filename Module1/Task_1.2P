@@ -1,0 +1,46 @@
+// Interrupt-driven Board
+
+const int button_pin = 2;
+const int led_push = 7;
+const int led_1 = 8;
+const int led_2 = 9;
+
+volatile boolean led_state = false;
+
+void setup()
+{
+  pinMode(button_pin, INPUT);
+  pinMode(led_push, OUTPUT);
+  pinMode(led_1, OUTPUT);
+  pinMode(led_2, OUTPUT);
+  attachInterrupt(digitalPinToInterrupt(button_pin), button_press, RISING);
+
+}
+
+void loop()
+{
+  digitalWrite(led_1, HIGH);
+  delay(1000);
+  digitalWrite(led_2, HIGH);
+  delay(1000);
+
+  digitalWrite(led_1, LOW);
+  delay(1000);
+  digitalWrite(led_2, LOW);
+  delay(1000);
+}
+
+
+void button_press() 
+{
+  if(led_state)
+  {
+   led_state= false;
+    digitalWrite(led_push, LOW);
+  }
+  else
+  {
+    led_state = true;
+    digitalWrite(led_push, HIGH);
+  }
+}
